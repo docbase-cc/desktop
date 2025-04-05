@@ -30,28 +30,13 @@ jobs:
 
       - run: bun install
 
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-
       - name: Get latest version of docbase
         run: echo "LATEST_VERSION=$(npm view docbase version)" >> $GITHUB_ENV
 
-      - name: Check version and set output
-        id: check_version
-        run: |
-          if [ "${{ steps.package-version.outputs.current-version }}" != "${{ env.LATEST_VERSION }}" ]; then
-            echo "has_update=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_update=false" >> $GITHUB_OUTPUT
-          fi
-
       - run: bun run build
-        if: steps.check_version.outputs.has_update == 'true'
 
       # 如果有更新则创建发行版本
       - name: Create Release
-        if: steps.check_version.outputs.has_update == 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.package-version.outputs.current-version }}

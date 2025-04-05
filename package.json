@@ -6,17 +6,20 @@
   "private": true,
   "scripts": {
     "dev": "bun run --watch ./index.ts",
-    "build": "bun x bunco -n DocBase -t all -b -m -c ./src/index.ts -i ./public/logo.svg"
+    "build": "bun run ./build.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "bunco": "^0.0.3",
+    "7zip-min": "^2.0.0",
     "@terascope/fetch-github-release": "^2.1.0",
+    "@types/bun": "latest",
     "@types/fs-extra": "^11.0.4",
+    "bunco": "^0.0.3",
     "es-toolkit": "^1.34.1",
+    "execa": "^9.5.2",
     "fs-extra": "^11.3.0",
     "nanoid": "^5.1.5",
-    "node-notifier": "^10.0.1"
+    "node-notifier": "^10.0.1",
+    "zod": "^3.24.2"
   },
   "peerDependencies": {
     "typescript": "^5"

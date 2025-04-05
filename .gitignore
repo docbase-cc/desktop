@@ -1,6 +1,7 @@
 # dependencies (bun install)
 node_modules
 compile
+bun.lock
 
 # output
 out

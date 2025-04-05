@@ -61,6 +61,8 @@ export const compile = async (params: Input) => {
     `${currentPlatform.replace("win32", "windows")}-${currentArch}`,
   ];
 
+  const isWin32Platform = (a: string) => (currentPlatform === "win32" ? a : "");
+
   // 目标平台和架构
   const tgs =
     targetPlatformArch === "all"
@@ -79,8 +81,8 @@ export const compile = async (params: Input) => {
   const cmds = tgs.map((v, index) => {
     const cmd =
       `bun build` +
-      `${hideConsole ? " --windows-hide-console " : " "}` +
-      `${icon ? ` --windows-icon=${icon} ` : " "}` +
+      isWin32Platform(`${hideConsole ? " --windows-hide-console " : " "}`) +
+      isWin32Platform(`${icon ? ` --windows-icon=${icon} ` : " "}`) +
       `${bytecode ? ` --bytecode ` : " "}` +
       `--compile --minify --sourcemap --target=bun-${v} --outfile "${outs[index]}" ${input}`;
     return {

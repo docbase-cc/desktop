@@ -117,6 +117,5 @@ await compile({
   target: "all",
   name: "DocBase",
   hideConsole: true,
-  bytecode: true,
   compress: true,
 });

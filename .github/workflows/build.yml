@@ -30,8 +30,9 @@ jobs:
 
       - run: bun install
 
-      - name: Get latest version of docbase
-        run: echo "LATEST_VERSION=$(npm view docbase version)" >> $GITHUB_ENV
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
 
       - run: bun run build
 

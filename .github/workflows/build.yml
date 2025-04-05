@@ -33,7 +33,7 @@ jobs:
       - name: Get latest version of docbase
         run: echo "LATEST_VERSION=$(npm view docbase version)" >> $GITHUB_ENV
 
-      - run: bun x bunco -n DocBase -t all -b -m -c ./src/index.ts -i ./public/logo.svg
+      - run: bun run build
 
       # 如果有更新则创建发行版本
       - name: Create Release

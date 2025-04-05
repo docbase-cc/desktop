@@ -77,12 +77,8 @@ export const compile = async (params: Input) => {
 
   // 打包命令
   const cmds = tgs.map((v, index) => {
-    const isWin32Platform = (a: string) => (v.includes("windows") ? a : "");
-
     const cmd =
       `bun build` +
-      isWin32Platform(`${hideConsole ? " --windows-hide-console " : " "}`) +
-      isWin32Platform(`${icon ? ` --windows-icon=${icon} ` : " "}`) +
       `${bytecode ? ` --bytecode ` : " "}` +
       `--compile --minify --sourcemap --target=bun-${v} --outfile "${outs[index]}" ${input}`;
     return {
